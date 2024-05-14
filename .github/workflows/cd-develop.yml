@@ -1,0 +1,12 @@
+name: Deploy to Develop
+run-name: Deploy to Develop by @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/cd-template.yml
+    with:
+      env-type: dev
+      aws-account: 798499423242

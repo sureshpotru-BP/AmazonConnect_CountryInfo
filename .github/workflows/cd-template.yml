@@ -1,0 +1,53 @@
+on:
+  workflow_call:
+    inputs:
+      env-type:
+        required: true
+        type: string
+      aws-account:
+        required: true
+        type: string
+
+env:
+  TERRAFORM_VERSION: 1.6.3
+  TERRAGRUNT_VERSION: 0.53.1
+
+permissions:
+  id-token: write   
+  contents: read 
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v3
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: arn:aws:iam::${{ inputs.aws-account }}:role/GitHubQualtrics
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: eu-west-2
+      - name: install Terraform
+        run: |
+          set -e
+          echo ">> Install terraform with version ${TERRAFORM_VERSION}"
+          cd /tmp
+          wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+          unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+          mv terraform /usr/local/bin/
+          chmod +x /usr/local/bin/terraform
+          rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      - name: install Terragrunt
+        run: |
+          set -e
+          echo ">> Install terragrunt with version ${TERRAGRUNT_VERSION}"
+          wget -q https://github.com/gruntwork-io/terragrunt/releases/download/v${TERRAGRUNT_VERSION}/terragrunt_linux_amd64
+          mv terragrunt_linux_amd64 /usr/local/bin/terragrunt
+          chmod +x /usr/local/bin/terragrunt
+      - name: Deploy lambda
+        run: |
+          set -e
+          cd infra/${{ inputs.env-type }}
+          terragrunt apply -auto-approve
+

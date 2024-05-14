@@ -1,0 +1,12 @@
+name: Deploy to PROD
+run-name: Deploy to PROD by @${{ github.actor }}
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/cd-template.yml
+    with:
+      env-type: prod
+      aws-account: 008426199026
