@@ -1,15 +1,15 @@
 data "archive_file" "init" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambda"
-  output_path = "${path.module}/files/lambda.zip"
+  source_dir  = "${path.module}/lambda"
+  output_path = "${path.module}/lambda/CallBack_Test.zip"
 }
 
 resource "aws_lambda_function" "example" {
-  #filename         = "${path.module}/files/lambda.zip"
+  filename         = "${path.module}/lambda/CallBack_Test.zip"
   function_name    = var.lambda_name
   role             = aws_iam_role.lambda_exec.arn
   handler          = "lambda_function.lambda_handler"
-  filename         = "CallBack_Test.py"
+  #filename         = "CallBack_Test.py"
   #source_code_hash = data.archive_file.init.output_base64sha256
   runtime          = "python3.8"
 
