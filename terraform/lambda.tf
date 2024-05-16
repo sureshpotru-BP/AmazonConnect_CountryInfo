@@ -21,9 +21,9 @@ resource "aws_lambda_function" "example" {
   }
 }
 
-resource "aws_lambda_event_source_mapping" "example" {
-  event_source_arn  = "arn:aws:kinesis:eu-west-2:${data.aws_caller_identity.current.account_id}:stream/${var.kinesis_stream_name}"
-  function_name     = aws_lambda_function.example.arn
-  starting_position = "LATEST"
-  batch_size        = 100
-}
+#resource "aws_lambda_event_source_mapping" "example" {
+ # event_source_arn  = "arn:aws:kinesis:eu-west-2:${data.aws_caller_identity.current.account_id}:stream/${var.kinesis_stream_name}"
+ # function_name     = aws_lambda_function.example.arn
+ # starting_position = "LATEST"
+ # batch_size        = 100
+#}
