@@ -3,7 +3,7 @@ provider "aws" {
   default_tags {
     tags = {
       Created_by  = "terraform"
-      Repo        = "BPChargemaster/qualtrics-lambda-separate-ctrs"
+      Repo        = "BPChargemaster/Callback_Lambda"
       Environment = var.env_type
     }
   }
