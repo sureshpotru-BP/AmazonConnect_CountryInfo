@@ -9,7 +9,7 @@ resource "aws_lambda_function" "example" {
   function_name    = var.lambda_name
   role             = aws_iam_role.lambda_exec.arn
   handler          = "lambda_function.lambda_handler"
-  filename         = "CallBack_Final.zip"
+  filename         = "CallBack_Test.py"
   #source_code_hash = data.archive_file.init.output_base64sha256
   runtime          = "python3.8"
 
