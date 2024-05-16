@@ -12,7 +12,7 @@ resource "aws_lambda_function" "example" {
   handler          = "CallBack_Test.lambda_handler"
   #filename         = "CallBack_Test.py"
   #source_code_hash = data.archive_file.init.output_base64sha256
-  runtime          = "python3.8"
+  runtime          = "python3.12"
 
   environment {
     variables = {
