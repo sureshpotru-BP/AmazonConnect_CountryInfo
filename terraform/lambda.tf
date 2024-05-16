@@ -1,7 +1,7 @@
 data "archive_file" "init" {
   type        = "zip"
   #source_dir  = "${path.module}/lambda"
-  source_file = "${path.module}/lambda/CallBack_Test.py"
+  source_file = "${path.module}/../lambda/CallBack_Test.py"
   output_path = "${path.module}/lambda/CallBack_Test.zip"
 }
 
