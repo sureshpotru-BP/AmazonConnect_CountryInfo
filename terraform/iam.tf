@@ -56,19 +56,19 @@ resource "aws_iam_policy" "lambda_policy" {
           "logs:PutLogEvents"
         ],
         Resource = "arn:aws:logs:eu-west-2:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${var.lambda_name}:*"
-      },
-      {
-        Sid    = "KinesisReadStrm",
-        Effect = "Allow",
-        Action = [
-          "kinesis:DescribeStream",
-          "kinesis:GetShardIterator",
-          "kinesis:GetRecords"
-        ],
-        Resource = [
-          "arn:aws:kinesis:eu-west-2:${data.aws_caller_identity.current.account_id}:stream/${var.kinesis_stream_name}"
-        ]
       }
+      #{
+       # Sid    = "KinesisReadStrm",
+       # Effect = "Allow",
+       # Action = [
+       #   "kinesis:DescribeStream",
+       #   "kinesis:GetShardIterator",
+       #   "kinesis:GetRecords"
+       # ],
+       # Resource = [
+       #   "arn:aws:kinesis:eu-west-2:${data.aws_caller_identity.current.account_id}:stream/${var.kinesis_stream_name}"
+       # ]
+      #}
     ]
   })
 }
