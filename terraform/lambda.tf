@@ -6,7 +6,7 @@ data "archive_file" "init" {
 
 resource "aws_lambda_function" "example" {
   filename         = "${path.module}/lambda/CallBack_Test.zip"
-  function_name    = var.lambda_name
+  function_name    = "CallbackTest"
   role             = aws_iam_role.lambda_exec.arn
   handler          = "CallBack_Test.lambda_handler"
   #filename         = "CallBack_Test.py"
