@@ -19,7 +19,7 @@ remote_state {
 }
 
 inputs = {
-  lambda_name         = "SeparateCTRs"
+  lambda_name         = "Callback"
   bucket_name         = "separate-ctrs"
   kinesis_stream_name = "bppulse-test-nonsso-ctr-strm"
   env_type            = "dev"
