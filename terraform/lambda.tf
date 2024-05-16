@@ -14,11 +14,11 @@ resource "aws_lambda_function" "example" {
   #source_code_hash = data.archive_file.init.output_base64sha256
   runtime          = "python3.11"
 
-  environment {
-    variables = {
-      BUCKET_NAME = var.bucket_name
-    }
-  }
+  #environment {
+   # variables = {
+   #   BUCKET_NAME = var.bucket_name
+   # }
+  #}
 }
 
 #resource "aws_lambda_event_source_mapping" "example" {
