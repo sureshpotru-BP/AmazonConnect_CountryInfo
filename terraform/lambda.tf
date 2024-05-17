@@ -14,6 +14,7 @@ resource "aws_lambda_function" "example" {
   #filename         = "CallBack_Test.py"
   #source_code_hash = data.archive_file.init.output_base64sha256
   runtime          = "python3.11"
+  timeout          = 15 # timeout in seconds
 
   #environment {
    # variables = {
