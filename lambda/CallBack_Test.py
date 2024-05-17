@@ -15,8 +15,16 @@ def insert_callback_number(callback_number, queue_name, initial_contact_id):
     Insert a callback number into DynamoDB table with current UTC timestamp.
     """
     current_time_epoch = int(datetime.utcnow().timestamp())
-    table.put_item(Item={'CallBack_Number': callback_number, 'CreatedAt': current_time_epoch, 'Date (UTC)': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'), 'QueueName': queue_name, 'InitialContactId': initial_contact_id})
-
+    expire_at_epoch = current_time_epoch + 3600  # 60 minutes from current time
+    table.put_item(Item={
+        'CallBack_Number': callback_number,
+        'CreatedAt': current_time_epoch,
+        'ExpireAt': expire_at_epoch,
+        'Date (UTC)': datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'QueueName': queue_name,
+        'InitialContactId': initial_contact_id
+    })
+    
 def delete_callback_number(callback_number):
     """
     Delete a callback number from DynamoDB table.
