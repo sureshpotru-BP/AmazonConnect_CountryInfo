@@ -10,7 +10,7 @@ remote_state {
   }
   config = {
     bucket                  = "tf-state-${get_aws_account_id()}"
-    key                     = "qualtrics-lambda-separate-ctrs/terraform/terraform.tfstate"
+    key                     = "AmazonConnect_Callback/terraform/terraform.tfstate"
     region                  = "eu-west-2"
     encrypt                 = true
     skip_bucket_root_access = true
@@ -20,7 +20,7 @@ remote_state {
 
 inputs = {
   lambda_name         = "Callback"
-  bucket_name         = "separate-ctrs"
+  bucket_name         = "amazonconnect-callbacktest"
   kinesis_stream_name = "bppulse-test-nonsso-ctr-strm"
   env_type            = "dev"
   account_prefix      = "WS-009H"
