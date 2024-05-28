@@ -19,9 +19,9 @@ remote_state {
 }
 
 inputs = {
-  lambda_name         = "Callback"
+  lambda_name         = "CallbackTest"
   bucket_name         = "amazonconnect-callbacktest"
-  kinesis_stream_name = "bppulse-test-nonsso-ctr-strm"
+  #kinesis_stream_name = "bppulse-test-nonsso-ctr-strm"
   env_type            = "dev"
   account_prefix      = "WS-009H"
 }
