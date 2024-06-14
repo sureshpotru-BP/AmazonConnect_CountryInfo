@@ -1,17 +1,17 @@
 data "archive_file" "init" {
   type        = "zip"
   #source_dir  = "${path.module}/lambda"
-  source_file = "${path.module}/../lambda/CallBack_Test.py"
-  output_path = "${path.module}/lambda/CallBack_Test.zip"
+  source_file = "${path.module}/../lambda/lambda_function.py"
+  output_path = "${path.module}/lambda/lambda_function.zip"
 }
 
 resource "aws_lambda_function" "example" {
-  filename         = "${path.module}/lambda/CallBack_Test.zip"
-  function_name    = "CallBack_AmazonConnect"
+  filename         = "${path.module}/lambda/lambda_function.zip"
+  function_name    = "AmazonConnect_CountryInfo"
   #role             = aws_iam_role.lambda_exec.arn
   role             = "arn:aws:iam::008426199026:role/bpcm-lambda-dynamodb"
-  handler          = "CallBack_Test.lambda_handler"
-  #filename         = "CallBack_Test.py"
+  handler          = "lambda_function.lambda_handler"
+  #filename         = "lambda_function.py"
   #source_code_hash = data.archive_file.init.output_base64sha256
   runtime          = "python3.11"
   timeout          = 15 # timeout in seconds
