@@ -10,7 +10,7 @@ remote_state {
   }
   config = {
     bucket                  = "tf-state-${get_aws_account_id()}"
-    key                     = "AmazonConnect_Callback/terraform/terraform.tfstate"
+    key                     = "AmazonConnect_CountryInfo/terraform/terraform.tfstate"
     region                  = "eu-west-2"
     encrypt                 = true
     skip_bucket_root_access = true
@@ -19,8 +19,8 @@ remote_state {
 }
 
 inputs = {
-  lambda_name         = "CallBack_AmazonConnect"
-  bucket_name         = "amazonconnect-callback-uk"
+  lambda_name         = "AmazonConnect_CountryInfo"
+  bucket_name         = "amazonconnect-countryinfo-uk"
   #kinesis_stream_name = "bpcm-ctr-strm"
   env_type            = "prod"
   account_prefix      = "WS-009I"
